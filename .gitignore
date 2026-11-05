@@ -1,0 +1,13 @@
+# Godot 4+ specific ignores
+.godot/
+.nomedia
+
+# Mono-specific ignores 
+.mono/
+data_*/
+bin/
+obj/
+
+# Temporary files
+*.tmp
+
