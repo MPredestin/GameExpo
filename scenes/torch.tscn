@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b4qfxlhtxobul"]
+
+[ext_resource type="PackedScene" uid="uid://d4itk0hqjk0n7" path="res://assests/items/torch_godot.glb" id="1_d4v33"]
+
+[node name="torch_godot" unique_id=308730882 instance=ExtResource("1_d4v33")]

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://l4kqhoqf4fs"]
+
+[ext_resource type="PackedScene" uid="uid://b7gajromkwnmv" path="res://assests/player/male_character_in_suit.glb" id="1_3vyb7"]
+
+[node name="Sketchfab_Scene" unique_id=1834994888 instance=ExtResource("1_3vyb7")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=837721166]
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=1666532704]
