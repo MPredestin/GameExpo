@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://i5jpjrngyrtn"]
+
+[ext_resource type="PackedScene" uid="uid://bpumodnsmwogb" path="res://AssetsGameExpo/AssetsGameExpo/Environment/Forest/RockA.glb" id="1_07np7"]
+[ext_resource type="PackedScene" uid="uid://binvbl0otew7d" path="res://AssetsGameExpo/AssetsGameExpo/Environment/Forest/RockB.glb" id="2_tbsg6"]
+[ext_resource type="PackedScene" uid="uid://cn26umi8yg0gg" path="res://AssetsGameExpo/AssetsGameExpo/Environment/Forest/RockC.glb" id="3_vwvv7"]
+[ext_resource type="PackedScene" uid="uid://3jh8gg328syd" path="res://AssetsGameExpo/AssetsGameExpo/Environment/Forest/WoodenLogA.glb" id="4_ths71"]
+[ext_resource type="PackedScene" uid="uid://bw2pj286dk6pl" path="res://AssetsGameExpo/AssetsGameExpo/Environment/Forest/WoodenLogB.glb" id="5_nu43i"]
+[ext_resource type="Terrain3DAssets" uid="uid://dian6boaidl6s" path="res://Terrain Data - Chase Sequence/UPDATED_terrain_3d_assets.tres" id="6_qfyc7"]
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_pwjqv"]
+_shader_parameters = {
+&"bias_distance": null,
+&"blend_sharpness": null,
+&"depth_blur": null,
+&"distant_normal_scale": null,
+&"flat_terrain_normals": null,
+&"general_uniforms": null,
+&"ground_level": null,
+&"mipmap_bias": null,
+&"mipmaps": null,
+&"private": null,
+&"region_blend": null
+}
+
+[node name="Forest Scene" type="Node3D" unique_id=956368932]
+
+[node name="Forest Obstacles" type="Node3D" parent="." unique_id=666099358]
+
+[node name="RockA" parent="Forest Obstacles" unique_id=15782523 instance=ExtResource("1_07np7")]
+transform = Transform3D(1.5864302, 0, 1.217883, 0, 2, 0, -1.217883, 0, 1.5864302, -27.751917, 0, 2.5626655)
+
+[node name="RockA6" parent="Forest Obstacles" unique_id=2079853772 instance=ExtResource("1_07np7")]
+transform = Transform3D(2.3796453, 0, 1.8268244, 0, 3, 0, -1.8268244, 0, 2.3796453, -74.28158, 0, -44.416405)
+
+[node name="RockB" parent="Forest Obstacles" unique_id=1687240704 instance=ExtResource("2_tbsg6")]
+transform = Transform3D(2.1659389, 0, -0.42830947, 0, 2.2469985, 0, 0.33059263, 0, 2.8061485, -50.314075, 0.13208473, -2.338563)
+
+[node name="RockB4" parent="Forest Obstacles" unique_id=134902756 instance=ExtResource("2_tbsg6")]
+transform = Transform3D(2.1844487, 0, -0.47110564, 0, 2.2469983, 0, 0.35006553, 0, 2.9397526, -50.316574, 0.1403302, -5.5414457)
+
+[node name="RockA2" parent="Forest Obstacles" unique_id=1793696125 instance=ExtResource("1_07np7")]
+transform = Transform3D(2.9296284, 0, 0.64597076, 0, 3, 0, -0.64597076, 0, 2.9296284, 47.576027, 0, -3.3279643)
+
+[node name="RockA5" parent="Forest Obstacles" unique_id=785564524 instance=ExtResource("1_07np7")]
+transform = Transform3D(2.9296284, 0, 0.64597076, 0, 3, 0, -0.64597076, 0, 2.9296284, 48.631798, 0, 4.031466)
+
+[node name="RockA3" parent="Forest Obstacles" unique_id=2115877230 instance=ExtResource("1_07np7")]
+transform = Transform3D(2.0981905, 0, 0.5178829, 0.028210424, 1.1270928, -0.14321733, -0.4617814, 0.068854585, 2.3443496, 48.16354, 2.2645035, 0.5863662)
+
+[node name="RockA4" parent="Forest Obstacles" unique_id=2120029858 instance=ExtResource("1_07np7")]
+transform = Transform3D(2.0981905, 0, 0.5178829, 0.028210424, 1.1270928, -0.14321733, -0.4617814, 0.068854585, 2.3443496, 49.59532, 2.2645035, -0.5581229)
+
+[node name="RockB2" parent="Forest Obstacles" unique_id=395703562 instance=ExtResource("2_tbsg6")]
+transform = Transform3D(3, 0, 0, 0, -1.1653713, 2.7644005, 0, -2.7644005, -1.1653713, 47.52175, 2.2784173, -1.3167024)
+
+[node name="RockB3" parent="Forest Obstacles" unique_id=1840180887 instance=ExtResource("2_tbsg6")]
+transform = Transform3D(2.9426126, 0.18101616, -0.55521494, 0, 2.8522382, 0.9299123, 0.583978, -0.912124, 2.7976773, 47.52175, 0.46581876, 2.6625152)
+
+[node name="RockC" parent="Forest Obstacles" unique_id=136519317 instance=ExtResource("3_vwvv7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 48.3059, 0, 0.37103677)
+
+[node name="RockC5" parent="Forest Obstacles" unique_id=1440048754 instance=ExtResource("3_vwvv7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 50.24221, 0, 0.37103677)
+
+[node name="RockC4" parent="Forest Obstacles" unique_id=343439668 instance=ExtResource("3_vwvv7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 48.921715, 0, -1.4890072)
+
+[node name="RockC3" parent="Forest Obstacles" unique_id=1755695663 instance=ExtResource("3_vwvv7")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 49.339466, 0, 2.510084)
+
+[node name="RockC2" parent="Forest Obstacles" unique_id=1507526957 instance=ExtResource("3_vwvv7")]
+transform = Transform3D(1.4413793, 0, 1.3865157, 0, 2, 0, -1.3865157, 0, 1.4413793, -28.889305, 0, 1.287435)
+
+[node name="RockB5" parent="Forest Obstacles" unique_id=1270877913 instance=ExtResource("2_tbsg6")]
+transform = Transform3D(1.1627821, 0, -2.5937717, 0, 2.2469985, 0, 2.5822735, 0, 1.1679597, -74.41047, 0.16012168, -60.415577)
+
+[node name="RockC8" parent="Forest Obstacles" unique_id=705569506 instance=ExtResource("3_vwvv7")]
+transform = Transform3D(1.9163411, 0, 1.1877383, 0, 2, 0, -1.8433989, 0, 1.2347364, -72.58754, 0, -61.589035)
+
+[node name="RockC6" parent="Forest Obstacles" unique_id=1875920056 instance=ExtResource("3_vwvv7")]
+transform = Transform3D(1.4413793, 0, 1.3865157, 0, 2, 0, -1.3865157, 0, 1.4413793, -75.1472, 0, -18.583649)
+
+[node name="RockC7" parent="Forest Obstacles" unique_id=599385758 instance=ExtResource("3_vwvv7")]
+transform = Transform3D(0.25323057, -1.5730474, 1.208882, 1.9453208, 0.43606278, 0.15992706, -0.3893608, 1.1555824, 1.5852534, -73.66283, 0.4761728, -17.799246)
+
+[node name="WoodenLogA" parent="Forest Obstacles" unique_id=1194036391 instance=ExtResource("4_ths71")]
+transform = Transform3D(1.077901, 0, -1.313517, 0, 1.4400002, 0, 1.001186, 0, 1.4141643, -38.54417, 0, 3.0290039)
+
+[node name="WoodenLogB" parent="Forest Obstacles" unique_id=1098238799 instance=ExtResource("5_nu43i")]
+transform = Transform3D(1.3944378, 0, 0, 0, 1.4454775, 0, 0, 0, 1.804307, -13.98778, -0.04219222, -0.75283504)
+
+[node name="WoodenLogA2" parent="Forest Obstacles" unique_id=883281026 instance=ExtResource("4_ths71")]
+transform = Transform3D(0.634785, 0, -1.7411517, 0, 1.4400003, 0, 1.3271366, 0, 0.83281344, -77.21059, 1.9073486e-06, 3.0232792)
+
+[node name="WoodenLogA3" parent="Forest Obstacles" unique_id=369788035 instance=ExtResource("4_ths71")]
+transform = Transform3D(-0.9031219, 0, -1.6588279, 0, 1.4400003, 0, 1.2449415, 0, -1.2033683, -76.419525, 1.9073486e-06, -73.60904)
+
+[node name="WoodenLogB2" parent="Forest Obstacles" unique_id=729080266 instance=ExtResource("5_nu43i")]
+transform = Transform3D(1.1928266, 0, 1.2880766, 0, 1.4454774, 0, -1.0048851, 0, 1.528983, -60.477856, -0.042190313, 3.9702463)
+
+[node name="WoodenLogB4" parent="Forest Obstacles" unique_id=81886212 instance=ExtResource("5_nu43i")]
+transform = Transform3D(0.012912162, 0, 2.316113, 0, 1.4454771, 0, -1.5693344, 0, 0.019056581, -73.118095, -0.042190313, -86.17619)
+
+[node name="WoodenLogB3" parent="Forest Obstacles" unique_id=984213409 instance=ExtResource("5_nu43i")]
+transform = Transform3D(1.0950303, 0, -1.4236443, 0, 1.4454772, 0, 1.1106473, 0, 1.4036262, -79.39437, -0.042190313, -29.536499)
+
+[node name="Terrain3D" type="Terrain3D" parent="." unique_id=212163348]
+data_directory = "res://TerrainData"
+material = SubResource("Terrain3DMaterial_pwjqv")
+assets = ExtResource("6_qfyc7")
+displacement_sharpness = 0.5
+top_level = true
+metadata/_edit_lock_ = true
