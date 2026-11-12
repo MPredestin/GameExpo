@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://djr6qxa4v8vkv"]
+
+[ext_resource type="Script" uid="uid://n1h1xpahfn5f" path="res://Player.cs" id="1_65as8"]
+[ext_resource type="Script" uid="uid://dgbfv3fev6w" path="res://CollectibleItem.cs" id="2_4cw00"]
+[ext_resource type="FontFile" uid="uid://bbebf81hm224t" path="res://amatic/AmaticSC-Regular.ttf" id="3_ajqsf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sl4hm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65as8"]
+albedo_color = Color(0.40803632, 0.4183935, 0.011243439, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sqbv4"]
+material = SubResource("StandardMaterial3D_65as8")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sl4hm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4cw00"]
+albedo_color = Color(0.96948165, 0.5929532, 0.5178017, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sqbv4"]
+material = SubResource("StandardMaterial3D_4cw00")
+
+[sub_resource type="BoxMesh" id="BoxMesh_sl4hm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sqbv4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6m75s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sl4hm"]
+font = ExtResource("3_ajqsf")
+font_size = 100
+font_color = Color(0.8019283, 0.52148485, 0.3401198, 1)
+outline_size = 1
+outline_color = Color(0.13461947, 0.065148555, 0.021700596, 1)
+
+[node name="Node3D" type="Node3D" unique_id=656487321]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1220230180]
+transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=217010379]
+shape = SubResource("BoxShape3D_sl4hm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor/CollisionShape3D" unique_id=1322019441]
+transform = Transform3D(0.91, 0, 0, 0, 0.91, 0, 0, 0, 0.91, 0, 0, 0)
+mesh = SubResource("BoxMesh_sqbv4")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1640148855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.872696, 0)
+script = ExtResource("1_65as8")
+MoveSpeed = 20.0
+Acceleration = 50.0
+JumpVelocity = 10.0
+MouseSensitivity = 0.003
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=663501073]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_sl4hm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=1190593544]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_sqbv4")
+
+[node name="CameraPivot" type="Node3D" parent="Player" unique_id=1904934304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player/CameraPivot" unique_id=2127996139]
+spring_length = 8.0
+
+[node name="Camera3D" type="Camera3D" parent="Player/CameraPivot/SpringArm3D" unique_id=161077534]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1009551561]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.535316, 1.9784956)
+light_energy = 15.0
+light_specular = 0.0
+omni_range = 78.87011
+
+[node name="item" type="RigidBody3D" parent="." unique_id=1839184843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9366212, 9.6406975)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="item" unique_id=1262866647]
+mesh = SubResource("BoxMesh_sl4hm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="item" unique_id=1001528068]
+shape = SubResource("BoxShape3D_sqbv4")
+
+[node name="CollectibleItem" type="Area3D" parent="item" unique_id=861179304]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+script = ExtResource("2_4cw00")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="item/CollectibleItem" unique_id=1894908721]
+shape = SubResource("BoxShape3D_6m75s")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1517397596]
+
+[node name="pickupLabel" type="Label" parent="CanvasLayer" unique_id=1365685953]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_sl4hm")
+horizontal_alignment = 1
+vertical_alignment = 2
