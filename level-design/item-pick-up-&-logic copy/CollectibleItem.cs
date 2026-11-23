@@ -5,11 +5,22 @@ public partial class CollectibleItem : Area3D
 	private bool _playerIsClose = false;
 	private Label _pickupLabel;
 	private Tween _currentTween;
-
+	private Player _player;
+	private Label3D _interactionPrompt;
+	private Tween _promptTween;
+	
 	public override void _Ready()
 	{
 		BodyEntered += OnBodyEntered;
 		BodyExited += OnBodyExited;
+		
+		_interactionPrompt = GetNode<Label3D>("InteractionPrompt");
+
+		_interactionPrompt.Visible = false;
+
+		Color promptColor = _interactionPrompt.Modulate;
+		promptColor.A = 0.0f;
+		_interactionPrompt.Modulate = promptColor;
 
 		// Find the UI label in the scene tree
 		_pickupLabel = GetTree().CurrentScene.FindChild("pickupLabel", true, false) as Label;
@@ -25,15 +36,12 @@ public partial class CollectibleItem : Area3D
 
 	private void OnBodyEntered(Node3D body)
 	{
-		if (body is Player)
+		if (body is Player player)
 		{
+			_player = player;
 			_playerIsClose = true;
 
-			if (_pickupLabel != null)
-			{
-				_pickupLabel.Text = "E";
-				FadeText(1.0f, 0.4f); // Fade in to full opacity over 0.4 seconds
-			}
+			ShowPrompt();
 		}
 	}
 
@@ -42,18 +50,55 @@ public partial class CollectibleItem : Area3D
 		if (body is Player)
 		{
 			_playerIsClose = false;
+			_player = null;
 
-			if (_pickupLabel != null && _pickupLabel.Text == "E")
-			{
-				// Fade out to transparent, then clear text when finished
-				FadeText(0.0f, 0.4f, () => {
-					if (_pickupLabel.Text == "E")
-					{
-						_pickupLabel.Text = "";
-					}
-				});
-			}
+			HidePrompt();
 		}
+	}
+	
+	private void ShowPrompt()
+	{
+		if (_interactionPrompt == null)
+			return;
+
+		if (_promptTween != null && _promptTween.IsValid())
+			_promptTween.Kill();
+
+		_interactionPrompt.Visible = true;
+
+		_promptTween = CreateTween();
+
+		_promptTween.TweenProperty(
+			_interactionPrompt,
+			"modulate:a",
+			1.0f,
+			0.3f
+		);
+	}
+	
+	private void HidePrompt()
+	{
+		if (_interactionPrompt == null)
+			return;
+
+		if (_promptTween != null && _promptTween.IsValid())
+			_promptTween.Kill();
+
+		_promptTween = CreateTween();
+
+		_promptTween.TweenProperty(
+			_interactionPrompt,
+			"modulate:a",
+			0.0f,
+			0.3f
+		);
+
+		_promptTween.TweenCallback(
+			Callable.From(() =>
+			{
+				_interactionPrompt.Visible = false;
+			})
+		);
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
@@ -66,35 +111,50 @@ public partial class CollectibleItem : Area3D
 
 	private async void PickUp()
 {
+	if (!_playerIsClose || _player == null)
+		return;
+
+	_player.CollectItem();
+
 	_playerIsClose = false;
+
+	HidePrompt();
 
 	if (_pickupLabel != null)
 	{
 		_pickupLabel.Text = "[Item] has been picked up";
-		// Fade in AND slide up for the pickup confirmation message
 		FadeText(1.0f, 0.2f);
 	}
 
-	// Hide the item mesh and disable physical collision instantly
-	Visible = false;
-	GetNode<CollisionShape3D>("CollisionShape3D")?.SetDeferred("disabled", true);
+	GetParent<Node3D>().Hide();
 
-	// Wait 1.5 seconds so the player can read the message
-	await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
+	GetNode<CollisionShape3D>("CollisionShape3D")
+		.SetDeferred("disabled", true);
 
-	// Fade out normally without moving when clearing up
+	GetParent()
+		.GetNodeOrNull<CollisionShape3D>("CollisionShape3D")
+		?.SetDeferred("disabled", true);
+
+	await ToSignal(
+		GetTree().CreateTimer(1.5f),
+        "timeout"
+	);
+
 	if (_pickupLabel != null)
 	{
 		float fadeDuration = 0.5f;
-		FadeText(0.0f, fadeDuration, () => {
+
+		FadeText(0.0f, fadeDuration, () =>
+		{
 			_pickupLabel.Text = "";
 		});
 
-		// CRITICAL: Wait for the fade-out animation to finish BEFORE deleting the item!
-		await ToSignal(GetTree().CreateTimer(fadeDuration), "timeout");
+		await ToSignal(
+			GetTree().CreateTimer(fadeDuration),
+            "timeout"
+		);
 	}
 
-	// Finally, delete the item node from the world
 	GetParent().QueueFree();
 }
 

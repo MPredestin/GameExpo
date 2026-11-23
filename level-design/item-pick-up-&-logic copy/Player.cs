@@ -13,6 +13,14 @@ public partial class Player : CharacterBody3D
 	// Camera reference
 	private Node3D _cameraPivot;
 
+	// Inventory
+	public bool HasItem { get; private set; } = false;
+
+	public void CollectItem()
+	{
+		HasItem = true;
+	}
+
 	// Gravity
 	private float _gravity = 9.8f;
 
